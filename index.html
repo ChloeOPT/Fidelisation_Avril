@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Interactive</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Quel est le lien de parenté entre cet homme et moi ?</h2>
+    <input type="text" id="reponse" placeholder="Tape ta réponse ici">
+    <button id="valider">Valider</button>
+    <p id="message"></p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let boutonValider = document.getElementById("valider");
+            let champReponse = document.getElementById("reponse");
+            let message = document.getElementById("message");
+
+            // Liste des réponses correctes
+            let reponsesCorrectes = [
+                "mon père",
+                "c'est mon père",
+                "il est mon père",
+                "c'est mon papa",
+                "mon papa"
+            ].map(r => r.toLowerCase().trim());
+
+            boutonValider.addEventListener("click", function () {
+                let reponseUtilisateur = champReponse.value.toLowerCase().trim(); // Normalisation
+
+                if (reponsesCorrectes.includes(reponseUtilisateur)) {
+                    message.innerHTML = "✅ Bonne réponse !";
+                    message.style.color = "green";
+                } else {
+                    message.innerHTML = "❌ Mauvaise réponse. Essaie encore !";
+                    message.style.color = "red";
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
